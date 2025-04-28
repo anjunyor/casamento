@@ -13,7 +13,7 @@ const Hero: React.FC = () => {
       <div className="relative h-full flex flex-col items-center justify-center text-center px-4">
         <div className="animate-fadeIn">
           <img 
-            src="https://i.ibb.co/VxKM8Ld/logo.png" 
+            src="https://i.ibb.co/WW9sfDgg/logo.png" 
             alt="J & A" 
             className="h-24 md:h-32 mx-auto mb-6"
           />
