@@ -17,7 +17,7 @@ const Header: React.FC = () => {
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
         <div className="flex items-center mb-4 md:mb-0">
           <img 
-            src="https://ibb.co/hR5CVXDD" 
+            src="https://i.ibb.co/WW9sfDgg/logo.jpg" 
             alt="J & A" 
             className="h-12 md:h-16"
           />
