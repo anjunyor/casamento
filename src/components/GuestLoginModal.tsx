@@ -9,12 +9,14 @@ interface GuestLoginModalProps {
 const GuestLoginModal: React.FC<GuestLoginModalProps> = ({ onClose }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [errors, setErrors] = useState({ name: '', email: '' });
+  const [password, setPassword] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [errors, setErrors] = useState({ name: '', email: '', password: '' });
   const { setCurrentGuest } = useGiftContext();
 
   const validateForm = () => {
     let isValid = true;
-    const newErrors = { name: '', email: '' };
+    const newErrors = { name: '', email: '', password: '' };
 
     if (!name.trim()) {
       newErrors.name = 'Name is required';
@@ -29,6 +31,11 @@ const GuestLoginModal: React.FC<GuestLoginModalProps> = ({ onClose }) => {
       isValid = false;
     }
 
+    if (isAdmin && !password.trim()) {
+      newErrors.password = 'Password is required for admin login';
+      isValid = false;
+    }
+
     setErrors(newErrors);
     return isValid;
   };
@@ -37,8 +44,19 @@ const GuestLoginModal: React.FC<GuestLoginModalProps> = ({ onClose }) => {
     e.preventDefault();
     
     if (validateForm()) {
-      setCurrentGuest({ name, email });
-      onClose();
+      if (isAdmin) {
+        // Simple admin validation - in a real app, this would be more secure
+        if (email === 'anderson@email.com' && password === 'admin123') {
+          setCurrentGuest({ name, email, isAdmin: true });
+          onClose();
+        } else {
+          setErrors(prev => ({ ...prev, password: 'Invalid admin credentials' }));
+          return;
+        }
+      } else {
+        setCurrentGuest({ name, email, isAdmin: false });
+        onClose();
+      }
     }
   };
 
@@ -52,7 +70,9 @@ const GuestLoginModal: React.FC<GuestLoginModalProps> = ({ onClose }) => {
           <X size={20} />
         </button>
         
-        <h2 className="text-2xl font-serif text-center mb-6 text-[#000080]">Welcome Guest</h2>
+        <h2 className="text-2xl font-serif text-center mb-6 text-olive">
+          {isAdmin ? 'Admin Login' : 'Guest Login'}
+        </h2>
         
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -62,30 +82,63 @@ const GuestLoginModal: React.FC<GuestLoginModalProps> = ({ onClose }) => {
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#F7CAC9] ${errors.name ? 'border-red-500' : 'border-gray-300'}`}
+              className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-olive ${
+                errors.name ? 'border-red-500' : 'border-gray-300'
+              }`}
               placeholder="Enter your name"
             />
             {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
           </div>
           
-          <div className="mb-6">
+          <div className="mb-4">
             <label htmlFor="email" className="block text-gray-700 mb-2">Your Email</label>
             <input
               type="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#F7CAC9] ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
+              className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-olive ${
+                errors.email ? 'border-red-500' : 'border-gray-300'
+              }`}
               placeholder="Enter your email"
             />
             {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
           </div>
+
+          {isAdmin && (
+            <div className="mb-4">
+              <label htmlFor="password" className="block text-gray-700 mb-2">Password</label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-olive ${
+                  errors.password ? 'border-red-500' : 'border-gray-300'
+                }`}
+                placeholder="Enter admin password"
+              />
+              {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
+            </div>
+          )}
+
+          <div className="mb-6">
+            <label className="flex items-center">
+              <input
+                type="checkbox"
+                checked={isAdmin}
+                onChange={(e) => setIsAdmin(e.target.checked)}
+                className="mr-2"
+              />
+              <span className="text-gray-700">Login as Admin</span>
+            </label>
+          </div>
           
           <button 
             type="submit"
-            className="w-full bg-[#D4AF37] hover:bg-[#B8860B] text-white font-medium py-2 px-4 rounded-md transition-colors"
+            className="w-full bg-olive hover:bg-olive-dark text-white font-medium py-2 px-4 rounded-md transition-colors"
           >
-            Continue to Gift Registry
+            {isAdmin ? 'Login as Admin' : 'Continue as Guest'}
           </button>
         </form>
       </div>

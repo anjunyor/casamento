@@ -16,6 +16,7 @@ export interface Gift {
 export interface GuestInfo {
   name: string;
   email: string;
+  isAdmin?: boolean;
 }
 
 export type GiftCategory = 'kitchen' | 'bedroom' | 'living' | 'bathroom' | 'other';
