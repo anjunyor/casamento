@@ -82,7 +82,7 @@ const GuestLoginModal: React.FC<GuestLoginModalProps> = ({ onClose }) => {
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-olive ${
+              className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-olive text-gray-900 ${
                 errors.name ? 'border-red-500' : 'border-gray-300'
               }`}
               placeholder="Enter your name"
@@ -97,7 +97,7 @@ const GuestLoginModal: React.FC<GuestLoginModalProps> = ({ onClose }) => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-olive ${
+              className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-olive text-gray-900 ${
                 errors.email ? 'border-red-500' : 'border-gray-300'
               }`}
               placeholder="Enter your email"
@@ -113,7 +113,7 @@ const GuestLoginModal: React.FC<GuestLoginModalProps> = ({ onClose }) => {
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-olive ${
+                className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-olive text-gray-900 ${
                   errors.password ? 'border-red-500' : 'border-gray-300'
                 }`}
                 placeholder="Enter admin password"
