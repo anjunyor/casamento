@@ -16,13 +16,25 @@ const GiftList: React.FC = () => {
   
   const [isFiltersVisible, setIsFiltersVisible] = useState(false);
 
+  const translateCategory = (category: string) => {
+    const translations: { [key: string]: string } = {
+      'all': 'Todos',
+      'kitchen': 'Cozinha',
+      'bedroom': 'Quarto',
+      'living': 'Sala',
+      'bathroom': 'Banheiro',
+      'other': 'Outros'
+    };
+    return translations[category] || category;
+  };
+
   return (
     <section id="gifts" className="py-12 px-4 bg-beige/50">
       <div className="container mx-auto">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-serif font-bold text-olive mb-2">Nossa Lista de Presentes</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Explore nossa lista de desejos e escolha os itens que gostaria de nos presentear para esta nova etapa de nossas vidas.
+            Navegue pela nossa lista e escolha os itens que você gostaria de nos presentear.
           </p>
         </div>
         
@@ -32,7 +44,7 @@ const GiftList: React.FC = () => {
               <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <input
                 type="text"
-                placeholder="Search gifts..."
+                placeholder="Buscar presentes..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-olive text-gray-900"
@@ -44,7 +56,7 @@ const GiftList: React.FC = () => {
               className="flex items-center text-gray-700 hover:text-olive md:hidden"
             >
               <Filter size={18} className="mr-1" />
-              {isFiltersVisible ? 'Hide Filters' : 'Show Filters'}
+              {isFiltersVisible ? 'Ocultar Filtros' : 'Mostrar Filtros'}
             </button>
             
             <div className="hidden md:flex space-x-2">
@@ -58,7 +70,7 @@ const GiftList: React.FC = () => {
                       : 'bg-white text-gray-700 hover:bg-olive-light hover:text-white'
                   }`}
                 >
-                  {category}
+                  {translateCategory(category)}
                 </button>
               ))}
             </div>
@@ -76,7 +88,7 @@ const GiftList: React.FC = () => {
                       : 'bg-white text-gray-700 hover:bg-olive-light hover:text-white'
                   }`}
                 >
-                  {category}
+                  {translateCategory(category)}
                 </button>
               ))}
             </div>
@@ -94,9 +106,9 @@ const GiftList: React.FC = () => {
             <div className="inline-block p-4 rounded-full bg-olive-light/20 mb-4">
               <Search size={32} className="text-olive" />
             </div>
-            <h3 className="text-xl font-medium text-gray-700 mb-2">No gifts found</h3>
+            <h3 className="text-xl font-medium text-gray-700 mb-2">Nenhum presente encontrado</h3>
             <p className="text-gray-500">
-              Try adjusting your search or filter to find what you're looking for.
+              Tente ajustar sua busca ou filtros para encontrar o que procura.
             </p>
           </div>
         )}

@@ -19,20 +19,20 @@ const GuestLoginModal: React.FC<GuestLoginModalProps> = ({ onClose }) => {
     const newErrors = { name: '', email: '', password: '' };
 
     if (!name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = 'Nome é obrigatório';
       isValid = false;
     }
 
     if (!email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = 'E-mail é obrigatório';
       isValid = false;
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = 'Email is invalid';
+      newErrors.email = 'E-mail inválido';
       isValid = false;
     }
 
     if (isAdmin && !password.trim()) {
-      newErrors.password = 'Password is required for admin login';
+      newErrors.password = 'Senha é obrigatória para login como administrador';
       isValid = false;
     }
 
@@ -45,12 +45,11 @@ const GuestLoginModal: React.FC<GuestLoginModalProps> = ({ onClose }) => {
     
     if (validateForm()) {
       if (isAdmin) {
-        // Simple admin validation - in a real app, this would be more secure
         if (email === 'anderson@email.com' && password === 'admin123') {
           setCurrentGuest({ name, email, isAdmin: true });
           onClose();
         } else {
-          setErrors(prev => ({ ...prev, password: 'Invalid admin credentials' }));
+          setErrors(prev => ({ ...prev, password: 'Credenciais de administrador inválidas' }));
           return;
         }
       } else {
@@ -71,12 +70,12 @@ const GuestLoginModal: React.FC<GuestLoginModalProps> = ({ onClose }) => {
         </button>
         
         <h2 className="text-2xl font-serif text-center mb-6 text-olive">
-          {isAdmin ? 'Admin Login' : 'Guest Login'}
+          {isAdmin ? 'Login Administrativo' : 'Login de Convidado'}
         </h2>
         
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="name" className="block text-gray-700 mb-2">Your Name</label>
+            <label htmlFor="name" className="block text-gray-700 mb-2">Seu Nome</label>
             <input
               type="text"
               id="name"
@@ -85,13 +84,13 @@ const GuestLoginModal: React.FC<GuestLoginModalProps> = ({ onClose }) => {
               className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-olive text-gray-900 ${
                 errors.name ? 'border-red-500' : 'border-gray-300'
               }`}
-              placeholder="Enter your name"
+              placeholder="Digite seu nome"
             />
             {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
           </div>
           
           <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-700 mb-2">Your Email</label>
+            <label htmlFor="email" className="block text-gray-700 mb-2">Seu E-mail</label>
             <input
               type="email"
               id="email"
@@ -100,14 +99,14 @@ const GuestLoginModal: React.FC<GuestLoginModalProps> = ({ onClose }) => {
               className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-olive text-gray-900 ${
                 errors.email ? 'border-red-500' : 'border-gray-300'
               }`}
-              placeholder="Enter your email"
+              placeholder="Digite seu e-mail"
             />
             {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
           </div>
 
           {isAdmin && (
             <div className="mb-4">
-              <label htmlFor="password" className="block text-gray-700 mb-2">Password</label>
+              <label htmlFor="password" className="block text-gray-700 mb-2">Senha</label>
               <input
                 type="password"
                 id="password"
@@ -116,7 +115,7 @@ const GuestLoginModal: React.FC<GuestLoginModalProps> = ({ onClose }) => {
                 className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-olive text-gray-900 ${
                   errors.password ? 'border-red-500' : 'border-gray-300'
                 }`}
-                placeholder="Enter admin password"
+                placeholder="Digite a senha de administrador"
               />
               {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
             </div>
@@ -130,7 +129,7 @@ const GuestLoginModal: React.FC<GuestLoginModalProps> = ({ onClose }) => {
                 onChange={(e) => setIsAdmin(e.target.checked)}
                 className="mr-2"
               />
-              <span className="text-gray-700">Login as Admin</span>
+              <span className="text-gray-700">Entrar como Administrador</span>
             </label>
           </div>
           
@@ -138,7 +137,7 @@ const GuestLoginModal: React.FC<GuestLoginModalProps> = ({ onClose }) => {
             type="submit"
             className="w-full bg-olive hover:bg-olive-dark text-white font-medium py-2 px-4 rounded-md transition-colors"
           >
-            {isAdmin ? 'Login as Admin' : 'Continue as Guest'}
+            {isAdmin ? 'Entrar como Admin' : 'Continuar como Convidado'}
           </button>
         </form>
       </div>

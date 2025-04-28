@@ -12,36 +12,47 @@ const GiftCard: React.FC<GiftCardProps> = ({ gift, currentGuest }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  const formattedPrice = new Intl.NumberFormat('en-US', {
+  const formattedPrice = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
-    currency: 'USD'
+    currency: 'BRL'
   }).format(gift.price);
+
+  const translateCategory = (category: string) => {
+    const translations: { [key: string]: string } = {
+      'kitchen': 'Cozinha',
+      'bedroom': 'Quarto',
+      'living': 'Sala',
+      'bathroom': 'Banheiro',
+      'other': 'Outros'
+    };
+    return translations[category] || category;
+  };
 
   const getStatusStyles = () => {
     switch (gift.status) {
-      case 'disponível':
+      case 'available':
         return {
           className: 'bg-olive-light/20 text-olive-dark',
           icon: <ShoppingBag size={16} className="mr-1" />,
-          text: 'disponível'
+          text: 'Disponível'
         };
-      case 'reservado':
+      case 'reserved':
         return {
           className: 'bg-yellow-100 text-yellow-800',
           icon: <Bookmark size={16} className="mr-1" />,
-          text: 'reservado'
+          text: 'Reservado'
         };
-      case 'comprado':
+      case 'purchased':
         return {
           className: 'bg-green-100 text-green-800',
           icon: <Check size={16} className="mr-1" />,
-          text: 'comprado'
+          text: 'Comprado'
         };
       default:
         return {
           className: 'bg-gray-100 text-gray-800',
           icon: null,
-          text: 'Unknown'
+          text: 'Desconhecido'
         };
     }
   };
@@ -73,12 +84,14 @@ const GiftCard: React.FC<GiftCardProps> = ({ gift, currentGuest }) => {
           
           <div className="flex justify-between items-center mb-4">
             <span className="font-bold text-lg">{formattedPrice}</span>
-            <span className="text-xs px-2 py-1 bg-beige rounded-full capitalize">{gift.category}</span>
+            <span className="text-xs px-2 py-1 bg-beige rounded-full capitalize">
+              {translateCategory(gift.category)}
+            </span>
           </div>
           
-          {gift.status === 'disponível' ? (
+          {gift.status === 'available' ? (
             <button 
-              onClick={() => currentGuest ? setIsModalOpen(true) : alert('Please login as a guest first')}
+              onClick={() => currentGuest ? setIsModalOpen(true) : alert('Por favor, faça login primeiro')}
               disabled={!currentGuest}
               className={`w-full py-2 rounded-md transition-colors ${
                 currentGuest 
@@ -86,12 +99,12 @@ const GiftCard: React.FC<GiftCardProps> = ({ gift, currentGuest }) => {
                   : 'bg-gray-200 text-gray-500 cursor-not-allowed'
               }`}
             >
-              Reserve Gift
+              Reservar Presente
             </button>
           ) : (
             <div className="text-center py-2 text-gray-500 italic text-sm">
-              {gift.status === 'reservado' ? 'reservado by ' : 'comprado by '}
-              <span className="font-medium">{gift.reservadoBy?.name}</span>
+              {gift.status === 'reserved' ? 'Reservado por ' : 'Comprado por '}
+              <span className="font-medium">{gift.reservedBy?.name}</span>
             </div>
           )}
         </div>

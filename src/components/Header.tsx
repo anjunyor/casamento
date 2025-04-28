@@ -17,24 +17,24 @@ const Header: React.FC = () => {
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
         <div className="flex items-center mb-4 md:mb-0">
           <img 
-            src="https://i.ibb.co/WW9sfDgg/logo.jpg" 
+            src="https://i.ibb.co/VxKM8Ld/logo.png" 
             alt="J & A" 
             className="h-12 md:h-16"
           />
         </div>
         
         <nav className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
-          <a href="#home" className="hover:text-beige transition-colors">Home</a>
-          <a href="#gifts" className="hover:text-beige transition-colors">Gifts</a>
+          <a href="#home" className="hover:text-beige transition-colors">Início</a>
+          <a href="#gifts" className="hover:text-beige transition-colors">Presentes</a>
           
           {currentGuest ? (
             <div className="flex items-center">
-              <span className="mr-3 text-beige">Hello, {currentGuest.name}</span>
+              <span className="mr-3 text-beige">Olá, {currentGuest.name}</span>
               <button 
                 onClick={handleLogout}
                 className="bg-olive-light hover:bg-olive-dark text-white px-4 py-2 rounded-md transition-colors"
               >
-                Logout
+                Sair
               </button>
             </div>
           ) : (
@@ -42,7 +42,7 @@ const Header: React.FC = () => {
               onClick={() => setIsModalOpen(true)}
               className="bg-olive-light hover:bg-olive-dark text-white px-4 py-2 rounded-md transition-colors"
             >
-              Guest Login
+              Entrar
             </button>
           )}
         </nav>
