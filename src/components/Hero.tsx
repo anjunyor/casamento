@@ -19,25 +19,24 @@ const Hero: React.FC = () => {
           />
           
           <p className="text-xl md:text-2xl font-light text-gray-700 mb-6">
-            Celebrating Our Engagement
+            Nosso Noivado
           </p>
           
           <div className="flex justify-center">
             <div className="border-l-2 border-r-2 border-olive px-6 py-2 mb-8">
-              <p className="text-lg font-medium text-gray-800">June 15, 2025</p>
+              <p className="text-lg font-medium text-gray-800">Junho 01, 2025</p>
             </div>
           </div>
           
           <p className="max-w-2xl mx-auto text-gray-600 mb-8">
-            Thank you for celebrating our special moment. We've created this registry to help coordinate gifts.
-            Browse through our wishlist and select items you'd like to gift us.
+          Obrigado por celebrar esse momento tão especial conosco. Criamos esta lista de presentes para facilitar a escolha de quem quiser nos presentear. Navegue pela nossa seleção de itens e escolha aqueles que gostaria de nos oferecer.
           </p>
           
           <a 
             href="#gifts" 
             className="inline-block bg-olive hover:bg-olive-dark text-white font-medium py-3 px-8 rounded-md transition-all hover:shadow-lg transform hover:-translate-y-1"
           >
-            View Gift Registry
+            Ver Lista de Presentes
           </a>
         </div>
       </div>

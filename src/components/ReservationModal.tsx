@@ -49,7 +49,7 @@ const ReservationModal: React.FC<ReservationModalProps> = ({ gift, onClose }) =>
               />
               <div className="ml-3">
                 <span className="block font-medium">I'll buy and bring this gift</span>
-                <span className="text-sm text-gray-500">Mark this gift as purchased by you</span>
+                <span className="text-sm text-gray-500">Mark this gift as comprado by you</span>
               </div>
             </label>
             
@@ -63,7 +63,7 @@ const ReservationModal: React.FC<ReservationModalProps> = ({ gift, onClose }) =>
               />
               <div className="ml-3">
                 <span className="block font-medium">I'll reserve this gift</span>
-                <span className="text-sm text-gray-500">Mark this gift as reserved, but not yet purchased</span>
+                <span className="text-sm text-gray-500">Mark this gift as reservado, but not yet comprado</span>
               </div>
             </label>
           </div>
@@ -81,7 +81,7 @@ const ReservationModal: React.FC<ReservationModalProps> = ({ gift, onClose }) =>
             className="flex-1 bg-[#D4AF37] hover:bg-[#B8860B] text-white font-medium py-2 px-4 rounded-md transition-colors flex items-center justify-center"
           >
             <ShoppingBag size={18} className="mr-2" />
-            {willBring ? 'Mark as Purchased' : 'Reserve Gift'}
+            {willBring ? 'Mark as comprado' : 'Reserve Gift'}
           </button>
         </div>
       </div>

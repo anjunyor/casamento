@@ -7,12 +7,12 @@ const AdminDashboard: React.FC = () => {
 
   const giftStats = {
     total: gifts.length,
-    available: gifts.filter(g => g.status === 'available').length,
-    reserved: gifts.filter(g => g.status === 'reserved').length,
-    purchased: gifts.filter(g => g.status === 'purchased').length
+    disponível: gifts.filter(g => g.status === 'disponível').length,
+    reservado: gifts.filter(g => g.status === 'reservado').length,
+    comprado: gifts.filter(g => g.status === 'comprado').length
   };
 
-  const reservedGifts = gifts.filter(g => g.status !== 'available');
+  const reservadoGifts = gifts.filter(g => g.status !== 'disponível');
 
   const formatDate = (date: string) => {
     return new Date(date).toLocaleDateString('pt-BR', {
@@ -33,22 +33,22 @@ const AdminDashboard: React.FC = () => {
             <p className="text-2xl font-bold text-olive">{giftStats.total}</p>
           </div>
           <div className="bg-white p-4 rounded-lg shadow-sm">
-            <h3 className="text-sm text-gray-600 mb-1">Available</h3>
-            <p className="text-2xl font-bold text-olive-light">{giftStats.available}</p>
+            <h3 className="text-sm text-gray-600 mb-1">disponível</h3>
+            <p className="text-2xl font-bold text-olive-light">{giftStats.disponível}</p>
           </div>
           <div className="bg-white p-4 rounded-lg shadow-sm">
-            <h3 className="text-sm text-gray-600 mb-1">Reserved</h3>
-            <p className="text-2xl font-bold text-yellow-600">{giftStats.reserved}</p>
+            <h3 className="text-sm text-gray-600 mb-1">reservado</h3>
+            <p className="text-2xl font-bold text-yellow-600">{giftStats.reservado}</p>
           </div>
           <div className="bg-white p-4 rounded-lg shadow-sm">
-            <h3 className="text-sm text-gray-600 mb-1">Purchased</h3>
-            <p className="text-2xl font-bold text-green-600">{giftStats.purchased}</p>
+            <h3 className="text-sm text-gray-600 mb-1">comprado</h3>
+            <p className="text-2xl font-bold text-green-600">{giftStats.comprado}</p>
           </div>
         </div>
 
         <div className="bg-white rounded-lg shadow-sm overflow-hidden">
           <div className="p-4 border-b border-gray-200">
-            <h3 className="text-lg font-medium text-olive">Reserved & Purchased Gifts</h3>
+            <h3 className="text-lg font-medium text-olive">reservado & comprado Gifts</h3>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full">
@@ -62,22 +62,22 @@ const AdminDashboard: React.FC = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {reservedGifts.map((gift) => (
+                {reservadoGifts.map((gift) => (
                   <tr key={gift.id} className="hover:bg-beige/30">
                     <td className="px-4 py-3 text-sm text-gray-900">{gift.name}</td>
                     <td className="px-4 py-3 text-sm text-gray-600">
-                      {gift.reservedBy?.name}
+                      {gift.reservadoBy?.name}
                       <br />
-                      <span className="text-xs text-gray-500">{gift.reservedBy?.email}</span>
+                      <span className="text-xs text-gray-500">{gift.reservadoBy?.email}</span>
                     </td>
                     <td className="px-4 py-3">
                       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
-                        ${gift.status === 'purchased' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}>
-                        {gift.status === 'purchased' ? 'Purchased' : 'Reserved'}
+                        ${gift.status === 'comprado' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}>
+                        {gift.status === 'comprado' ? 'comprado' : 'reservado'}
                       </span>
                     </td>
                     <td className="px-4 py-3 text-sm text-gray-600">
-                      {gift.reservedBy?.willBring ? 'Will bring' : 'Will purchase'}
+                      {gift.reservadoBy?.willBring ? 'Will bring' : 'Will purchase'}
                     </td>
                     <td className="px-4 py-3 text-sm text-gray-900 text-right">
                       {new Intl.NumberFormat('pt-BR', {

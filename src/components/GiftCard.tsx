@@ -19,23 +19,23 @@ const GiftCard: React.FC<GiftCardProps> = ({ gift, currentGuest }) => {
 
   const getStatusStyles = () => {
     switch (gift.status) {
-      case 'available':
+      case 'disponível':
         return {
           className: 'bg-olive-light/20 text-olive-dark',
           icon: <ShoppingBag size={16} className="mr-1" />,
-          text: 'Available'
+          text: 'disponível'
         };
-      case 'reserved':
+      case 'reservado':
         return {
           className: 'bg-yellow-100 text-yellow-800',
           icon: <Bookmark size={16} className="mr-1" />,
-          text: 'Reserved'
+          text: 'reservado'
         };
-      case 'purchased':
+      case 'comprado':
         return {
           className: 'bg-green-100 text-green-800',
           icon: <Check size={16} className="mr-1" />,
-          text: 'Purchased'
+          text: 'comprado'
         };
       default:
         return {
@@ -76,7 +76,7 @@ const GiftCard: React.FC<GiftCardProps> = ({ gift, currentGuest }) => {
             <span className="text-xs px-2 py-1 bg-beige rounded-full capitalize">{gift.category}</span>
           </div>
           
-          {gift.status === 'available' ? (
+          {gift.status === 'disponível' ? (
             <button 
               onClick={() => currentGuest ? setIsModalOpen(true) : alert('Please login as a guest first')}
               disabled={!currentGuest}
@@ -90,8 +90,8 @@ const GiftCard: React.FC<GiftCardProps> = ({ gift, currentGuest }) => {
             </button>
           ) : (
             <div className="text-center py-2 text-gray-500 italic text-sm">
-              {gift.status === 'reserved' ? 'Reserved by ' : 'Purchased by '}
-              <span className="font-medium">{gift.reservedBy?.name}</span>
+              {gift.status === 'reservado' ? 'reservado by ' : 'comprado by '}
+              <span className="font-medium">{gift.reservadoBy?.name}</span>
             </div>
           )}
         </div>

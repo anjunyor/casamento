@@ -56,8 +56,8 @@ export const GiftProvider: React.FC<{ children: React.ReactNode }> = ({ children
         gift.id === giftId 
           ? { 
               ...gift, 
-              status: willBring ? 'purchased' : 'reserved',
-              reservedBy: {
+              status: willBring ? 'comprado' : 'reservado',
+              reservadoBy: {
                 name: currentGuest.name,
                 email: currentGuest.email,
                 willBring

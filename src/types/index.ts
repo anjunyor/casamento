@@ -5,8 +5,8 @@ export interface Gift {
   price: number;
   image: string;
   category: string;
-  status: 'available' | 'reserved' | 'purchased';
-  reservedBy?: {
+  status: 'disponível' | 'reservado' | 'comprado';
+  reservadoBy?: {
     name: string;
     email: string;
     willBring: boolean;
@@ -19,4 +19,4 @@ export interface GuestInfo {
   isAdmin?: boolean;
 }
 
-export type GiftCategory = 'kitchen' | 'bedroom' | 'living' | 'bathroom' | 'other';
+export type GiftCategory = 'Cozinha' | 'Quarto' | 'Sala' | 'bathroom' | 'Outros';

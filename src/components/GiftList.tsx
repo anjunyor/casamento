@@ -20,9 +20,9 @@ const GiftList: React.FC = () => {
     <section id="gifts" className="py-12 px-4 bg-beige/50">
       <div className="container mx-auto">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-serif font-bold text-olive mb-2">Our Gift Registry</h2>
+          <h2 className="text-3xl font-serif font-bold text-olive mb-2">Nossa Lista de Presentes</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Browse through our wishlist and select items you'd like to gift us for our new life together.
+            Explore nossa lista de desejos e escolha os itens que gostaria de nos presentear para esta nova etapa de nossas vidas.
           </p>
         </div>
         
