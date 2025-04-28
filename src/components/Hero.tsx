@@ -24,7 +24,7 @@ const Hero: React.FC = () => {
           
           <div className="flex justify-center">
             <div className="border-l-2 border-r-2 border-olive px-6 py-2 mb-8">
-              <p className="text-lg font-medium text-gray-800">15 de Junho de 2025</p>
+              <p className="text-lg font-medium text-gray-800">01 de Junho de 2025</p>
             </div>
           </div>
           
